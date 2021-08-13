@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block title %} Contact Us {% endblock %} {% block content %} {% load static %}
+
+<div class="container">
+ <form method="POST">
+    {% csrf_token %}
+    {%for field in form%}
+    <div class="cust-form-row">
+        {{field.errors}}
+        <label for="{{ field.id_for_label }}">
+            {{ field.label }}{% if field.field.required %}:{% endif %}
+        </label><br> {{field}}
+        <br>
+    </div>
+    {%endfor%}
+    <div class="form-controls">
+        <button type="submit" class="btn btn-success mt-1">Save</button>
+    </div>
+<!--</form>--> 
+
+<div class="container">
+    <div class="row">
+            {% for k in obj %}
+                <div class="col-sm-4">
+                    <div class="card" style="width: 18rem;">
+                      <img src="...." class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ k.name }}</h5>
+                        <p class="card-text">Text here</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ k.price }}</li>
+                        <li class="list-group-item">{{ k.description }}</li>
+                        <li class="list-group-item">{{ k.image }}</li>
+                      </ul>
+                      <div class="card-body">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                      </div>
+                    </div>
+                </div>
+            {% endfor %}
+  </form>
+</div>
+{% endblock %}
